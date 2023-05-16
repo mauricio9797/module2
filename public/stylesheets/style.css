@@ -1,0 +1,434 @@
+@font-face {
+  font-family: "Boston";
+  src: url(/fonts/boston.woff2) format("woff2"),url(/fonts/boston.woff) format("opentype"),url(/fonts/boston.otf) format("truetype")
+}
+
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+  /* border:1px solid red; */
+  font-family: 'Boston';
+}
+
+
+.color-icon{
+  background-color: blue;
+  width:15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+@keyframes progressbar-animation{
+  0% {
+    width:0;
+  }
+  25% {
+    width: 25%;
+  }
+  50% {
+    width:50%;
+  }
+  65% {
+    width:75%;
+  }
+  75%{
+    width:75%;
+  }
+  85%{
+    width:75%;
+  }
+  100%{
+    width: 75%;
+  }
+}
+
+@keyframes weekpercentage-animation{
+  0%{
+    content: '0%';
+  }
+  10%{
+    content: '10%';
+  }
+  19%{
+    content: '19%';
+  }
+  28%{
+    content: '28%';
+  }
+  40%{
+    content: '40%';
+  }
+  56%{
+    content: '56%';
+  }
+  78%{
+    content: '78%';
+  }
+  100%{
+    content: '95%';
+  }
+
+}
+
+html{
+  overflow-x: hidden !important;
+}
+
+:root{
+  --fs-9:4.5rem;
+  --fs-8:3.5rem;
+  --fs-7:3.2rem;
+  --blue: #017bff;
+  --gray: #eef3fb;
+  --orange:#ffa031;
+  --gray-light:#808d9f;
+  --green: #89DEA6;
+  --neon: #07DFE0;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+:root {
+  --primary-color: #185ee0;
+  --secondary-color: #e6eef9;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: rgba(230, 238, 249, 0.5);
+}
+
+.tabs {
+  max-width: 600px;
+  display: flex;
+  position: relative;
+  background-color: #fff;
+  padding: 0.75rem;
+  border-radius: 99px;
+}
+.tabs * {
+  z-index: 2;
+}
+
+input[type=radio] {
+  display: none;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  width: 400px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+}
+
+input[type=radio]:checked + label {
+  color: black !important;
+}
+input[type=radio]:checked + label > .notification {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+input[id=radio-1]:checked ~ .glider {
+  transform: translateX(0);
+}
+
+input[id=radio-2]:checked ~ .glider {
+  transform: translateX(100%);
+}
+
+input[id=radio-3]:checked ~ .glider {
+  transform: translateX(200%);
+}
+
+input[id=radio-4]:checked ~ .glider {
+  transform: translateX(300%);
+}
+
+.glider {
+  height: 45px;
+  width: 24%;
+  background-color: white;
+  z-index: 1;
+  transition: 250ms ease-out;
+}
+
+
+
+
+
+
+
+
+@media (max-width: 700px) {
+  .tabs {
+    transform: scale(0.6);
+  }
+}
+
+.progress{
+  height:0.7rem !important;
+  width: 100% !important;
+  max-width: 650px;
+}
+
+
+.week-percentage::after{
+  content: "";
+  animation-name: weekpercentage-animation;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.progress-text{
+  width:100% !important;
+  max-width: 650px;
+}
+
+.progress-bar{
+  animation-name: progressbar-animation;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.text-default{
+  font-family: 'Helvetica Neue',"Serif";
+  font-weight: 400 !important;
+}
+
+.rounded-50{
+  border-radius: 50%;
+}
+
+.favicon-xs{
+  width:35px;
+  height:35px;
+  border-radius: 50%;
+}
+
+.favicon-sm{
+  width:45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.favicon-md{
+  width:70px;
+  height: 70px;
+  border-radius: 50%;
+}
+
+.fs-9{
+  font-size: var(--fs-9);
+}
+
+.fs-8{
+  font-size: var(--fs-8);
+}
+
+.fs-7{
+  font-size: var(--fs-7);
+}
+
+.list-card{
+  box-shadow: 0 5px 25px rgba(0,96,199,.3);
+}
+
+.list-card-habits:hover{
+  transform: scale(1.1);
+  transition-property: transform;
+  transition-duration: 350ms;
+  transition-timing-function:ease-in-out;
+  cursor: pointer;
+}
+
+.list-card-habits{
+  box-shadow: 0 5px 25px rgba(0,96,199,.3);
+}
+
+.habits-icon{
+  font-size: 5.5rem;
+}
+
+.list-box{
+  box-shadow: 0 5px 25px rgba(0,96,199,.3);
+  max-width:500px;
+}
+
+.text-box{
+  max-width:500px;
+}
+
+.bg-showchase{
+  max-width:1100px !important;
+}
+
+.form-container{
+  max-width: 500px !important;
+}
+
+.settings-form{
+  max-width:750px;
+}
+
+.btn-delete:hover{
+  border:1px solid red !important;
+  transition-property: border;
+  transition-duration: 300ms;
+  transition-timing-function: ease-in-out;
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#bg-top{
+  background-image: url('/images/background3.svg');
+  background-size: 100% 100%;
+}
+
+#bg-cards{
+  min-height:80vh;
+  background-image: url('../images/background2.svg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+background-position: 0 100%;
+padding:50px 0 100px;
+}
+
+#bg-bottom{
+  background-image: url('/images/background4.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+
+.list-style-none{
+  list-style: none;
+}
+
+.navbar-toggler-icon{
+  background-image: url('/images/toggler-icon.svg') !important;
+  background-size: cover;
+}
+
+.navbar-toggler{
+  border:none !important;
+}
+
+.bg-gray{
+  background-color: var(--gray) !important;
+}
+
+.bg-blue{
+  background-color: var(--blue);
+}
+
+.bg-red{
+  background-color: red;
+}
+
+.text-blue{
+  color:var(--blue) !important;
+}
+
+.border-blue{
+  border:1px solid var(--blue);
+}
+
+.text-orange{
+  color:var(--orange);
+}
+
+.text-graylight{
+  color:var(--gray-light);
+}
+
+.text-green{
+  color:var(--green);
+}
+
+.bg-lightgray{
+  background-color: var(--gray-light) !important;
+}
+
+.border-orange{
+  border-bottom: 2px solid var(--orange);
+}
+
+a {
+  color: #00b7ff;
+}
+
+h1 {
+  color: 15px;
+}
+
+.text-divider {
+  gap:0.7rem;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.text-divider::before, .text-divider::after {
+  content: '';
+  height: 2px;
+  background-color: gray;
+  flex-grow: 1;
+}
+
+footer{
+  padding:10rem 0;
+}
+
+.offcanvas{
+  border-radius: 1.5rem 0;
+}
+
+@media (min-width:768px){
+  .position-md-absolute{
+    position: absolute !important;
+  }
+  .top-md-50{
+    top:50%;
+  }
+  .start-md-100{
+    left:100%;
+  }
+  .translate-md-middle{
+    transform:translate(-50%,-50%)
+  }
+  .offcanvas{
+    width:700px !important;
+  }
+}
+
+@media (max-width:768px){
+  .showcase-video{
+    width:325px !important;
+    height:625px !important;
+ }
+ .fs-7{
+  font-size: 2.2rem !important;
+ }
+}
+
+.hehe {
+  width: 500;
+  height: 500;
+}
