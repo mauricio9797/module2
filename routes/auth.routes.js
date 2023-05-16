@@ -210,31 +210,9 @@ router.post("/accountDelete/:userId", isLoggedIn,  async (req, res) => {
     console.error("There was an error", err);
   }
 });
-router.get("/accountEdit/:userId", isLoggedIn, async (req, res, next) => {
-  try {
-    const { userId } = req.params.userId;
-    const user = await User.findById(userId);
-    res.render("settings", { user});
-    console.log("holaaaaa")
-  } catch (err) {
-    console.error("There was an error", err);
-  }
-});
-router.post("/accountEdit/:userId", isLoggedIn, async (req, res) => {
-  const userId = req.params.userId;
-  const updateData = {
-    username: req.body.username,
-};
 
-  const user = await User.findByIdAndUpdate(userId, updateData, {new: true})
-    console.log("hello this is the updatedUser data", user)
-  res.redirect("/profile/");
-  
-})
 
-router.get("/updateProfile", isLoggedIn, async(req, res) => {
-res.render("updateProfile")
-});
+
 
 
 

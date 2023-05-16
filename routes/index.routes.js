@@ -5,6 +5,7 @@ const authRoutes = require("./auth.routes");
 const isLoggedOut = require("../middlewares/isLoggedOut");
 const User = require("../models/User.model");
 const Habit = require("../models/Habit.model");
+const bcryptjs = require("bcryptjs");
 // const helpers = require('../utils/helpers.js');
 
 
@@ -25,27 +26,47 @@ router.get("/messages", isLoggedIn, (req, res) => {
   res.send("Your recent messages" + req.session.user.username);
 });
 
+
+
 router.get("/profile", isLoggedIn, async(req, res) => {
   
   const user = await User.findOne({ username: req.session.user.username }).populate('habit');
 
 
     console.log("hello this is the user data", user)
-    console.log("User Habits ======>", user.habit)
+   
   res.render("profile", { userName: req.session.user.username,   userImage: user.userImage, habits: user.habit});
   
-});
-
+})
 router.get("/profile/settings", isLoggedIn, async(req,res) => {
   try{
     console.log("this is the route that renders profile/settings. Edit it in order to update user!")
-  res.render("settings");
+    const user = await User.findOne({username: req.session.user.username})
+  res.render("settings", {user});
   }catch(err){
     console.error("There was an error", err);
   }
 })
-/*
-router.post("/profile/settings", isLoggedIn, async (req, res) => {
+router.post("/accountEdit/:userId", isLoggedIn,  async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const {username} = req.body
+
+    const userUpdated = await User.findByIdAndUpdate(userId, req.body,  {
+      new: true,
+    })
+    req.session.user = {
+      username: username,
+     
+      
+  }
+    res.redirect("/profile")
+  } catch (err) {
+    console.error("There was an error", err);
+  }
+});
+
+/*router.post("/profile/settings", isLoggedIn, async (req, res) => {
   try {
     const { username } = req.body;
     const user = await User.findOne({ _id: req.user._id });
@@ -83,9 +104,9 @@ router.post("/profile/settings", isLoggedIn, async (req, res) => {
     console.error("There was an error", err);
     res.render("error");
   }
-});
+});*/
 
-*/
+
 router.get("/habits", (req, res, next) => {
   res.render("habits");
 });
