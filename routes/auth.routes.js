@@ -86,7 +86,7 @@ router.post('/login',async(req,res,next) =>{
   }
 
     console.log(req.body);
-    res.render("habits");
+    res.redirect("/profile");
   } catch (err) {
     
   }
