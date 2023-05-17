@@ -88,7 +88,7 @@ router.post('/login',async(req,res,next) =>{
     console.log(req.body);
     res.render("/");
   } catch (err) {
-    next(err);
+    
   }
 });
 
