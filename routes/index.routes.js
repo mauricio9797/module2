@@ -4,8 +4,13 @@ const isLoggedIn = require("../middlewares/isLoggedIn");
 const authRoutes = require("./auth.routes");
 const isLoggedOut = require("../middlewares/isLoggedOut");
 const User = require("../models/User.model");
-const Habit = require("../models/Habit.model");
+//const Habit = require("../models/Habit.model");
 const bcryptjs = require("bcryptjs");
+const uploader = require('../middlewares/cloudinary.config.js');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
+
 // const helpers = require('../utils/helpers.js');
 
 
@@ -37,7 +42,7 @@ router.get("/profile", isLoggedIn, async(req, res) => {
    
   res.render("profile", { userName: req.session.user.username,   userImage: user.userImage, habits: user.habit});
   
-})
+});
 router.get("/profile/settings", isLoggedIn, async(req,res) => {
   try{
     console.log("this is the route that renders profile/settings. Edit it in order to update user!")
@@ -46,17 +51,18 @@ router.get("/profile/settings", isLoggedIn, async(req,res) => {
   }catch(err){
     console.error("There was an error", err);
   }
-})
+});
 router.post("/accountEdit/:userId", isLoggedIn,  async (req, res) => {
   try {
     const userId = req.params.userId;
-    const {username} = req.body
+    const {username, email} = req.body
 
     const userUpdated = await User.findByIdAndUpdate(userId, req.body,  {
       new: true,
     })
     req.session.user = {
       username: username,
+      email: email
      
       
   }
@@ -65,47 +71,6 @@ router.post("/accountEdit/:userId", isLoggedIn,  async (req, res) => {
     console.error("There was an error", err);
   }
 });
-
-/*router.post("/profile/settings", isLoggedIn, async (req, res) => {
-  try {
-    const { username } = req.body;
-    const user = await User.findOne({ _id: req.user._id });
-
-    if (!user) {
-      return res.status(404).render("error", { message: "User not found" });
-    }
-    user.username = username;
-    await user.save();
-    console.log(user);
-    res.render("namesuccess");
-  } catch (err) {
-    console.error("There was an error", err);
-    res.render("error");
-  }
-});
-
-router.post("/profile/settings", isLoggedIn, async (req, res) => {
-  try {
-    const { username } = req.body;
-    
-    const updatedUser = await User.findOneAndUpdate(
-      { _id: req.user._id },
-      { $set: { username: username } },
-      { new: true }
-    );
-
-    if (!updatedUser) {
-      return res.status(404).render("error", { message: "User not found" });
-    }
-
-    console.log(updatedUser);
-    res.render("namesuccess");
-  } catch (err) {
-    console.error("There was an error", err);
-    res.render("error");
-  }
-});*/
-
 
 router.get("/habits", (req, res, next) => {
   res.render("habits");
