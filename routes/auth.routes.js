@@ -64,7 +64,7 @@ res.redirect('/profile');
 
 
 router.get('/login',isLoggedOut, (req,res)=>{
-  res.render("auth/login")
+  res.render("/auth/login")
 })
 
 router.post('/login',async(req,res,next) =>{
