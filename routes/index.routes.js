@@ -52,21 +52,34 @@ router.get("/profile/settings", isLoggedIn, async(req,res) => {
     console.error("There was an error", err);
   }
 });
-router.post("/accountEdit/:userId", isLoggedIn,  async (req, res) => {
+router.post("/accountEdit/:userId", uploader.single("userImage"), isLoggedIn,  async (req, res) => {
   try {
+    const user = await User.findOne({username: req.body.username})
     const userId = req.params.userId;
-    const {username, email} = req.body
+    const {username, email} = req.body;
 
     const userUpdated = await User.findByIdAndUpdate(userId, req.body,  {
       new: true,
     })
-    req.session.user = {
-      username: username,
-      email: email
-     
-      
-  }
-    res.redirect("/profile")
+    const salt = await bcryptjs.genSalt(12);
+    const hash = await bcryptjs.hash(req.body.password, salt);
+   const {password} = req.body;
+
+    const passwordUpdate = await User.findByIdAndUpdate(userId, {password: hash}, {new: true,})
+
+  const {userImage} = req.file.path;
+  const userImageUpdated = await User.findByIdAndUpdate(userId, req.file.path, {new: true,})
+
+ req.session.user = {
+   username: username,
+   email: email,
+   password: hash,
+   userImage: userImage,
+  };
+  res.redirect("/profile")
+
+
+    
   } catch (err) {
     console.error("There was an error", err);
   }

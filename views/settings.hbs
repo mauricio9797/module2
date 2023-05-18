@@ -49,7 +49,7 @@
 
     <h2>Edit User</h2>
    
-<form class="d-flex flex-column" action="/accountEdit/{{user.id}}" method="post">
+<form class="d-flex flex-column" action="/accountEdit/{{user.id}}" method="post" enctype="multipart/form-data">
 
 
 
@@ -57,7 +57,11 @@
   <input  type="text" id="username" name="username" value="{{user.username}}" required /><br /><br />
   <label for="email">Email</label>
   <input  type="email" id="email" name="email" value="{{user.email}}" required /><br /><br />
-
+ <label for="password">Password</label>
+  <input  type="password" id="password" name="password" placeholder="Password" required /><br /><br />
+  <label for="userImage">Upload your new photo</label>
+  <input class="form-control-file" type="file" id="userImage "name="userImage" accept="image/png, image/jpg" required/><br /><br />
+ 
   <button type="submit">Edit</button>
 </form>
 

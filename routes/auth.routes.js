@@ -122,7 +122,7 @@ router.post("/habitCreate", isLoggedIn, async (req, res, next) => {
     res.status(404).render("emptyfield");
   }
 });
-router.post("/habits/earthing", isLoggedIn, async (req, res, next) => {
+/*router.post("/habits/earthing", isLoggedIn, async (req, res, next) => {
   console.log("hola desde auth.routes======>",req.body)
   try {
     const habit = new Habit({
@@ -146,7 +146,7 @@ router.post("/habits/earthing", isLoggedIn, async (req, res, next) => {
   } catch (err) {
     res.status(404).render("emptyfield");
   }
-});
+});*/
 
 
 router.get("/habitEdit/:habitId", isLoggedIn, async (req, res, next) => {
