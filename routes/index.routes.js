@@ -59,8 +59,9 @@ router.get("/profile/settings", isLoggedIn, async (req, res) => {
     console.log(
       "this is the route that renders profile/settings. Edit it in order to update user!"
     );
-    const user = await User.findOne({ username: req.session.user.username });
-    res.render("settings", { user });
+    const user = await User.findById(req.session.user.userId);
+    console.log(user)
+    res.render("settings",  {user} );
   } catch (err) {
     console.error("There was an error", err);
   }
@@ -73,27 +74,24 @@ router.post(
     try {
       const userId = req.session.user.userId;
       const { username, email } = req.body;
-
-      const userUpdated = await User.findByIdAndUpdate(userId, req.body, {
-        new: true,
-      });
-      /*const salt = await bcryptjs.genSalt(12);
-    const hash = await bcryptjs.hash(req.body.password, salt);*/
+      const salt = await bcryptjs.genSalt(12);
+      const hash = await bcryptjs.hash(req.body.password, salt);
       const { password } = req.body;
 
-      const passwordUpdate = await User.findByIdAndUpdate(userId, req.body, {
+      const passwordUpdate = await User.findByIdAndUpdate(userId, {username, email, password: hash}, {
         new: true,
       });
 
-      const { userImage } = req.file.filename;
+      /*const { userImage } = req.file.filename;
       const userImageUpdated = await User.findByIdAndUpdate(
         userId,
         req.file.filename,
         { new: true }
-      );
-
+      );*/
+console.log("a ver que paza aqui ---->")
       req.session.user = {
-        userId: user
+        userId: req.session.user.userId
+
       };
 
       res.redirect("/profile");

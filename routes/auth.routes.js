@@ -209,24 +209,7 @@ router.post("/accountDelete/:userId", isLoggedIn, async (req, res) => {
     console.error("There was an error", err);
   }
 });
-router.get("/accountEdit/:userId", isLoggedIn, async (req, res, next) => {
-  try {
-    const user = await User.findById(req.session.user.userId);
-    res.render("settings", { user });
-  } catch (err) {
-    console.error("There was an error", err);
-  }
-});
-router.post("/accountEdit/:userId", isLoggedIn, async (req, res) => {
-  const userId = req.session.user.userId;
-  const updateData = {
-    username: req.body.username,
-  };
 
-  const user = await User.findByIdAndUpdate(userId, updateData, { new: true });
-  console.log("hello this is the updatedUser data", user);
-  res.redirect("/profile/");
-});
 
 router.get("/myHabits", isLoggedIn, async (req, res) => {
   try {
