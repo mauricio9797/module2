@@ -2,17 +2,26 @@
 ![Logo](./images/habitsu.png)
 
                     Table of contents
+
+
 1.Introduction
+
 2.Prerequisites
+
 3.Getting Started
+
 	*Cloning the Repository
 	*Installing Dependencies
 	*Setting Up Environment Variables
 	*Running the Application
 4.Features and Usage
+
 5.Building a Similar App
+
 6.Contributions
+
 7.Licence
+
 8.Authors and Contact
 
 
