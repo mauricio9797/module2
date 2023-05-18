@@ -14,6 +14,8 @@
 
   <ul class="dropdown-menu rounded-2 py-3 px-2" aria-labelledby="dropdownMenuLink">
     <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{userName}}</p></li>
+    <li class="py-1"><a class="dropdown-item" href="/habitPractice">Recommendations</a></li>
+    <li class="py-1"><a class="dropdown-item" href="/myHabits">My Habits</a></li>
     <li class="py-1"><a class="dropdown-item" href="/profile/settings">Account Settings</a></li>
     <li class="py-1"><form class="px-3" method="POST" action="/auth/logout">
   <button class="p-0 border-0 bg-transparent" type="submit">Sign Out</button>
@@ -89,18 +91,6 @@
    <p class="fs-5 text-default">Sun</p>
     </div>
   </div>
-
-  <div class="col-4 d-flex align-items-center justify-content-center">
-  <a href="/habitPractice" class="btn text-blue border-blue bg-transparent border rounded-5 fs-4 text-default d-flex align-items-center justify-content-center gap-1 py-2 px-4 rounded-2">
-    <i class="fa-solid fa-plus fw-bold"></i>Recommendations
-  </a>
-</div>
-
-<div class="col-4 d-flex align-items-center justify-content-center">
-  <a href="/myHabits" class="btn text-blue border-blue bg-transparent border rounded-5 fs-4 text-default d-flex align-items-center justify-content-center gap-1 py-2 px-4 rounded-2">
-    <i class="fa-solid fa-plus fw-bold"></i>My Habits
-  </a>
-</div>
    {{#each habits}}
    <div class="d-flex gap-4">
      <div class="col-2 d-flex gap-3 align-items-center ">
@@ -215,7 +205,6 @@ You won't be able to see your history.</p>
     <label class="fs-4 text-default mb-2" for="Tasks2">Add tasks</label>
   <textarea  placeholder="Tasks"  class="form-control text-default habit-tasks2" type="text" id="Tasks2" name="Tasks2"></textarea><br /><br />
 
-  
 
    <label class="fs-4 text-default mb-2" for="Count">3. Habit completion streak</label>
   <select class="form-control" class="" type="text" id="Count" name="Count" value="0" readonly="Starting of your new journey!" /><br /><br />
@@ -240,25 +229,6 @@ You won't be able to see your history.</p>
 </div>
 
 
-{{!-- <h1>Hello {{this.userName}}<br> We are happy to have you here!<br> <br> Start building your future!</h1>
 
-
- <div>
-      <img  class="control-type-file"     src={{this.userImage}} alt="image">
-    </div>
-
-<h1><a href="/habitPractice"> Our Recommendations </a> </h1>  <br>
-
-<h1><a href="/habitCreate"> Add habits<a/></h1> <br>
-
-<h1><a href="/myHabits">My Habits<a/></h1> <br>
-
-<h1><a href="/userSettings">User Settings<a/></h1> <br>
-<br>
-
-
-{{#if error}}
-  <h2 style="color: red;">There was an error logging in... {{error}}</h2>
-{{/if}} --}}
    </div>
 </div>
