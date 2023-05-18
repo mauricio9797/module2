@@ -8,10 +8,10 @@ const isLoggedOut = require("../middlewares/isLoggedOut");
 const isLoggedIn = require("../middlewares/isLoggedIn");
 const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
-const uploader = require('../middlewares/cloudinary.config.js');
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const multer = require('multer');
+const uploader = require("../middlewares/cloudinary.config.js");
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const multer = require("multer");
 
 require("../db");
 
@@ -37,53 +37,54 @@ router.get("/signup", isLoggedOut, (req, res) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", uploader.single("userImage"),  async (req, res, next) => {
+router.post("/signup", uploader.single("userImage"), async (req, res, next) => {
   const existingEmail = await User.findOne({ email: req.body.email });
   const existingUser = await User.findOne({ username: req.body.username });
- 
+
   if (existingEmail || existingUser) {
     return res.render("accexist", { error: "Email/User already exists" });
   }
 
- const salt = await bcryptjs.genSalt(12);
- const hash = await bcryptjs.hash(req.body.password, salt);
- const user = new User({ username: req.body.username, email:req.body.email, userImage: req.file.path, password: hash });
+  const salt = await bcryptjs.genSalt(12);
+  const hash = await bcryptjs.hash(req.body.password, salt);
+  const user = new User({
+    username: req.body.username,
+    email: req.body.email,
+    userImage: req.file.path,
+    password: hash,
+  });
 
- await user.save();
-req.session.user = {
-username: user.username,
-userId: user._id,
-email:  user.email,
-}
+  await user.save();
+  req.session.user = {
+    userId: user._id,
+  };
 
+  res.redirect("/profile");
+});
 
-res.redirect('/profile');
+router.get("/login", isLoggedOut, (req, res) => {
+  res.render("auth/login");
+});
 
- 
-})
-
-
-router.get('/login',isLoggedOut, (req,res)=>{
-  res.render("auth/login")
-})
-
-router.post('/login',async(req,res,next) =>{
+router.post("/login", async (req, res, next) => {
   try {
-    const user = await User.findOne({email: req.body.email})
-    console.log(req.body)
-  
-    if (!user){
-      return res.render("auth/login", {error: "user non-exist"})
-    };
-    
-    const passwordMatch = await bcryptjs.compare(req.body.password, user.password);
-    if (!passwordMatch){
-      return res.render( 'auth/login', {error:"Password is incorrect"});
+    const user = await User.findOne({ email: req.body.email });
+    console.log(req.body);
+
+    if (!user) {
+      return res.render("auth/login", { error: "user non-exist" });
+    }
+
+    const passwordMatch = await bcryptjs.compare(
+      req.body.password,
+      user.password
+    );
+    if (!passwordMatch) {
+      return res.render("auth/login", { error: "Password is incorrect" });
     }
     req.session.user = {
-      username: user.email,
-      userId: user._id
-  }
+      userId: user._id,
+    };
 
     console.log(req.body);
     res.redirect("/profile");
@@ -96,9 +97,8 @@ router.get("/habitCreate", isLoggedIn, (req, res, next) => {
   res.render("habitCreate");
 });
 
-
 router.post("/habitCreate", isLoggedIn, async (req, res, next) => {
-  console.log("hola ======>",req.body)
+  console.log("hola ======>", req.body);
   try {
     const habit = new Habit({
       Habit: req.body.Habit,
@@ -115,7 +115,6 @@ router.post("/habitCreate", isLoggedIn, async (req, res, next) => {
       { _id: req.session.user.userId },
       { $push: { habit: habit._id } }
     );
-
 
     res.redirect("/myHabits");
   } catch (err) {
@@ -123,7 +122,7 @@ router.post("/habitCreate", isLoggedIn, async (req, res, next) => {
   }
 });
 router.post("/habits/earthing", isLoggedIn, async (req, res, next) => {
-  console.log("hola desde auth.routes======>",req.body)
+  console.log("hola desde auth.routes======>", req.body);
   try {
     const habit = new Habit({
       Habit: req.body.Habit,
@@ -141,13 +140,11 @@ router.post("/habits/earthing", isLoggedIn, async (req, res, next) => {
       { $push: { habit: habit._id } }
     );
 
-
     res.redirect("/myHabits");
   } catch (err) {
     res.status(404).render("emptyfield");
   }
 });
-
 
 router.get("/habitEdit/:habitId", isLoggedIn, async (req, res, next) => {
   try {
@@ -191,57 +188,52 @@ router.post("/habitDelete/:habitId", isLoggedIn, async (req, res) => {
   }
 });
 router.get("/userSettings", isLoggedIn, async (req, res, next) => {
-  console.log("this is --------->", req.session.user.userId)
-  const userToDelete = await User.findOne({username: req.session.user.username, userId:req.session.user.userId})
-  res.render("userSettings", {username: req.session.user.username, userId:req.session.user.userId});
+  console.log("this is --------->", req.session.user.userId);
+  const loggedInUser = await User.findById(req.session.user.userId);
+  res.render("userSettings", {
+    username: loggedInUser.username,
+    userId: req.session.user.userId,
+  });
 });
-router.post("/accountDelete/:userId", isLoggedIn,  async (req, res) => {
+router.post("/accountDelete/:userId", isLoggedIn, async (req, res) => {
   try {
-    const { userId } = req.params;
-    const userDeleted = await User.findByIdAndDelete(userId);
+    const userDeleted = await User.findByIdAndDelete(req.session.user.userId);
     req.session.destroy((err) => {
       if (err) {
         next(err);
         return;
       }
-    res.redirect("/")
-    });  
+      res.redirect("/");
+    });
   } catch (err) {
     console.error("There was an error", err);
   }
 });
 router.get("/accountEdit/:userId", isLoggedIn, async (req, res, next) => {
   try {
-    const { userId } = req.params.userId;
-    const user = await User.findById(userId);
-    res.render("settings", { user});
-    
+    const user = await User.findById(req.session.user.userId);
+    res.render("settings", { user });
   } catch (err) {
     console.error("There was an error", err);
   }
 });
 router.post("/accountEdit/:userId", isLoggedIn, async (req, res) => {
-  const userId = req.params.userId;
+  const userId = req.session.user.userId;
   const updateData = {
     username: req.body.username,
-};
+  };
 
-  const user = await User.findByIdAndUpdate(userId, updateData, {new: true})
-    console.log("hello this is the updatedUser data", user)
+  const user = await User.findByIdAndUpdate(userId, updateData, { new: true });
+  console.log("hello this is the updatedUser data", user);
   res.redirect("/profile/");
-  
-})
-
-
-
-
+});
 
 router.get("/myHabits", isLoggedIn, async (req, res) => {
   try {
     const userHabits = await User.findById(req.session.user.userId).populate(
       "habit"
     );
-    const user = await User.findById((req.session.user.userId))
+    const user = await User.findById(req.session.user.userId);
     console.log("UserHabits ======>", userHabits);
     res.render("myHabits", { userHabits, user });
   } catch (err) {
@@ -262,35 +254,34 @@ router.get("/habitPractice", (req, res) => {
   res.render("habitPractice");
 });
 
-router.get('/about', (req, res, next) => {
+router.get("/about", (req, res, next) => {
   res.render("auth/aboutUs");
 });
 
-router.get('/contact', (req, res) => {
-  res.render('auth/contact');
+router.get("/contact", (req, res) => {
+  res.render("auth/contact");
 });
 
-router.get('/privacy-policy', (req, res) => {
-  res.render('auth/prpolicy');
+router.get("/privacy-policy", (req, res) => {
+  res.render("auth/prpolicy");
 });
 
-router.get('/terms-of-use', (req, res) => {
-  res.render('auth/termsUse');
+router.get("/terms-of-use", (req, res) => {
+  res.render("auth/termsUse");
 });
 
-router.get('/habits/auth/login', (req, res) => {
-  res.render('auth/login');
+router.get("/habits/auth/login", (req, res) => {
+  res.render("auth/login");
 });
 
-router.get('/importance', (req, res) => {
-  res.render('auth/importance');
+router.get("/importance", (req, res) => {
+  res.render("auth/importance");
 });
 
-router.get('/importance', (req, res) => {
-  const videoUrl = 'https://www.youtube.com/embed/vN1aRN5bQQ0?start=33';
-  res.render('auth/importance', { videoUrl });
+router.get("/importance", (req, res) => {
+  const videoUrl = "https://www.youtube.com/embed/vN1aRN5bQQ0?start=33";
+  res.render("auth/importance", { videoUrl });
 });
-
 
 router.get("/habitCount/:habitId", isLoggedIn, async (req, res, next) => {
   try {
@@ -310,7 +301,7 @@ router.post("/habitCount/:habitId", isLoggedIn, async (req, res) => {
     const habitUpdated = await Habit.findByIdAndUpdate(habitId, updateData, {
       new: true,
     });
-    
+
     res.redirect(`/myHabits/${habitId}`);
   } catch (err) {
     console.error("There was an error", err);
@@ -318,4 +309,3 @@ router.post("/habitCount/:habitId", isLoggedIn, async (req, res) => {
 });
 
 module.exports = router;
-

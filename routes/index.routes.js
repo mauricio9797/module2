@@ -26,20 +26,24 @@ router.get("/", (req, res, next) => {
 
 router.use("/auth", authRoutes);
 
-router.get("/messages", isLoggedIn, (req, res) => {
-  res.send("Your recent messages" + req.session.user.username);
+router.get("/messages", isLoggedIn, async (req, res, next) => {
+  try{
+    const user = await User.findById(req.session.user.userId)
+    res.send("Your recent messages" + user.username);
+  }catch(err){
+    console.log(err)
+    next(err)
+  }
+ 
 });
 
 router.get("/profile", isLoggedIn, async (req, res, next) => {
   try{
-    const user = await User.findOne({
-      username: req.session.user.username,
-    }).populate("habit");
+    const user = await User.findById(req.session.user.userId).populate("habit");
   
-    console.log("hello this is req.session", req.session,   req.session.user);
   
     res.render("profile", {
-      userName: req.session.user.username,
+      userName: user.username,
       userImage: user.userImage,
       habits: user.habit,
     });
@@ -67,7 +71,7 @@ router.post(
   uploader.single("userImage"),
   async (req, res) => {
     try {
-      const userId = req.params.userId;
+      const userId = req.session.user.userId;
       const { username, email } = req.body;
 
       const userUpdated = await User.findByIdAndUpdate(userId, req.body, {
@@ -89,10 +93,7 @@ router.post(
       );
 
       req.session.user = {
-        username: username,
-        email: email,
-        password: password,
-        userImage: userImage,
+        userId: user
       };
 
       res.redirect("/profile");
