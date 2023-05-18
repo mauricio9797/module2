@@ -14,6 +14,8 @@
 
   <ul class="dropdown-menu rounded-2 py-3 px-2" aria-labelledby="dropdownMenuLink">
     <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{userName}}</p></li>
+    <li class="py-1"><a class="dropdown-item" href="/myHabits">My Habits</a></li>
+    <li class="py-1"><a class="dropdown-item" href="/profile">Profile</a></li>
     <li class="py-1"><a class="dropdown-item" href="/profile/settings">Account Settings</a></li>
     <li class="py-1"><form class="px-3" method="POST" action="/auth/logout">
   <button class="p-0 border-0 bg-transparent" type="submit">Sign Out</button>
@@ -27,133 +29,228 @@
     </nav>
    </div>
 </div>
-<h2><a href="/habits/lifestyle"> LifeStyle Habits:</a></h2>
-<ul>
 
-  <li><h4>Exercise regularly</h4></li>
-  <li><h4>Drink enough water</h4></li>
-  <li><h4>Get enough sleep</h4></li>
-  <li><h4>Eat a balanced diet</h4></li>
-  <li><h4>Reduce alcohol intake</h4></li>
-  <li><h4>Stop smoking</h4></li>
-  <li><h4>Go for regular check-ups with a doctor</h4></li>
-  <li><h4>Maintain a healthy weight</h4></li>
-  <li><h4>Wash hands regularly to prevent illness</h4></li>
-</ul>
+            
+          {{#if user}}
+          
 
-<h2><a href="/habits/mindfulness"> Mindfullness:</a></h2>
-<ul>
-  <li><h4>Practice mindfulness or meditation</h4></li>
-  <li><h4>Practice deep breathing exercises</h4></li>
-  <li><h4>Keep a gratitude journal</h4></li>
-  <li><h4>Practice self-reflection and journaling</h4></li>
-  <li><h4>Spend time in nature</h4></li>
-  <li><h4>Listen to calming music</h4></li>
-  <li><h4>Limit exposure to negative news or social media</h4></li>
-  <li><h4>Disconnect from technology periodically</h4></li>
-  <li><h4>Practice yoga or tai chi</h4></li>
-  <li><h4>Take a break and go for a walk</h4></li>
-</ul>
+<div class="position-relative d-none d-md-block">
+ <a class="dropdown-toggle fs-2 d-flex align-items-center" href="#" role="button" id="dropdownMenuLink2" data-bs-toggle="dropdown" aria-expanded="false">
+    <img class="favicon-sm" src="/images/avatar.svg" alt="">
+  </a>
 
-<h2><a href="habits/productivity"> Productivity:</a></h2>
-<ul>
-  <li><h4>Create a to-do list or schedule</h4></li>
-  <li><h4>Set achievable goals</h4></li>
-  <li><h4>Prioritize tasks</h4></li>
-  <li><h4>Minimize distractions</h4></li>
-  <li><h4>Take breaks regularly</h4></li>
-  <li><h4>Practice time management</h4></li>
-  <li><h4>Delegate tasks when possible</h4></li>
-  <li><h4>Learn to say "no" when necessary</h4></li>
-  <li><h4>Focus on one task at a time</h4></li>
-  <li><h4>Take on challenging tasks to improve skills</h4></li>
+  <ul class="p dropdown-menu rounded-2 py-3 px-2" aria-labelledby="dropdownMenuLink2">
+    <li class="d-flex gap-1"> <a href="/profile"><img class="favicon-sm" src="/images/avatar.svg" alt=""></a> </li>
+    <li class="py-1"><a class="dropdown-item" href="/profile">Profile</a></li>
+    <li class="py-1"><a class="dropdown-item" href="/profile/settings">Account Settings</a></li>
+    <li class="py-1"><form class="px-3" method="POST" action="/auth/logout">
+  <button class="p-0 border-0 bg-transparent" type="submit">Sign Out</button>
+</form></li>
 </ul>
+</div>
+{{/if}}
+             <li class="nav-item d-flex justify-content-center gap-3 pb-4 d-md-none p-2 border-bottom border-muted">
+                <a class="btn btn-primary fs-4 rounded-5 px-4 py-2" href="/login">Login</a>
+                <a class="btn btn-primary fs-4 rounded-5 px-4 py-2" href="/signup">Sign Up</a>
+            </li>
+            <li class="nav-item d-md-none border-bottom border-muted pb-4">
+              <a class="text-decoration-none text-dark fs-5" href="">Pricing</a>
+            </li>
+            <li class="nav-item d-md-none d-flex flex-column">
+              <a class="text-decoration-none text-dark fs-5" href="">Email Us</a>
+              <a class="text-decoration-none text-dark fs-5" href="">Privacy Policy</a>
+              <a class="text-decoration-none text-dark fs-5" href="">Terms of Service</a>
+            </li>
+            <li class="nav-item d-flex gap-3 d-md-none">
+              <a href=""><img src="/images/twitter.svg" alt=""></a>
+              <a href=""><img src="/images/linkedin.svg" alt=""></a>
+            </li>
+        </ul>
+      </div>
+    </div>
+    </nav>
+   </div>
+</div>
+<div class="container-fluid py-5">
+ <div class="container d-flex gap-5 flex-wrap justify-content-center pb-4">
 
-<h2><a href="habits/relationships"> Healthy social bonds:</a></h2>
-<ul>
-  <li><h4>Spend quality time with loved ones</h4></li>
-  <li><h4>Practice active listening</h4></li>
-  <li><h4>Show appreciation for others</h4></li>
-  <li><h4>Communicate effectively</h4></li>
-  <li><h4>Practice forgiveness</h4></li>
-  <li><h4>Give compliments</h4></li>
-  <li><h4>Practice empathy</h4></li>
-  <li><h4>Avoid gossip or negative talk</h4></li>
-  <li><h4>Be supportive during difficult times</h4></li>
-</ul>
 
-<h2><a href="habits/intermittentFasting"> Intermittent fasting:</a></h2>
-<ul>
-  <li><h4>Start feeling comfortable when you feel hungry</h4></li>
-  <li><h4>Start spacing your meals further apart</h4></li>
-  <li><h4>Eat less times per days</h4></li>
-  <li><h4>Postpone breakfast</h4></li>
-  <li><h4>Incorporate 16/8 intermittent fasting</h4></li>
-  <li><h4>Incorporate 20/4 intermittent fasting</h4></li>
-  <li><h4>Incorporate 24 hours fasts</h4></li>
-</ul>
-<h2><a href="habits/dopamineFasting"> Dopamine Fasting:</a></h2>
-<ul>
-  <li><h4>Plan daily time without any sort of distractions</h4></li>
-  <li><h4>Remove unnecessary pleasures, like listening to music</h4></li>
-  <li><h4>Eat plain, simple food</h4></li>
-  <li><h4>Do not use headphones</h4></li>
-  <li><h4>Just use your phone when strictly necessary, make/receive calls</h4></li>
-  <li><h4>spend less time using devices</h4></li>
-  <li><h4>Eliminate social media accounts</h4></li>
-  <li><h4>Reduce social media activity</h4></li>
-</ul>
-<h2><a href="habits/coldWater"> ColdWater Immersion:</a></h2>
-<ul>
-  <li><h4>1 minute immersion</h4></li>
-  <li><h4>3 minutes immersions</h4></li>
-  <li><h4>5 minutes immersions</h4></li>
-  <li><h4>7 minutes immersions</h4></li>
-  <li><h4>10 minutes immersions</h4></li>
-</ul>
-<h2><a href="habits/earthing"> Earthing:</a></h2>
-<ul>
-  <li><h4>Put a grass mat under your work desk</h4></li>
-  <li><h4> Mountain barefoot walking</h4></li>
-  <li><h4>Get in the water.Go for a fish barefoot on the beach or dive in for a swim</h4></li>
-  <li><h4>Going swimming or taking a bath in the nature</h4></li>
-  <li><h4>Use earthing footwear</h4></li>
-  <li><h4>Connect conductive sheets to your bed in order to sleep grounded</h4></li>
-  <li><h4>Beach barefoot walking</h4></li>
-</ul>
-<h2><a href="habits/exercise"> Exercise:</a></h2>
-<ul>
-  <li><h4>Going to the gym 3 to 5 times a week </h4></li>
-  <li><h4>Walking 10K steps a day</h4></li>
-  <li><h4>Go for bike rides more often</h4></li>
-  <li><h4>Choose more active, physical demanding ways of spend your free-time</h4></li>
-</ul>
-<h2><a href="habits/healthDiet"> Healthy Diet:</a></h2>
-<ul>
-  <li><h4>Avoid processed foods</h4></li>
-  <li><h4>Prioritize meals based around vegetables, lean sources of protein and healthy fats</h4></li>
-  <li><h4>Take care of how you digest foods, eliminate the ones that stress your digestive system, like gluten, milk</h4></li>
-  <li><h4>Eat unprocessed foods at least 80% of the time</h4></li>
-  <li><h4>Drink at least 2 litres of water per day</h4></li>
-  <li><h4>Make of polyunsaturated and monounsaturated fats your main source of dietary fats</h4></li>
-  <li><h4>practice conscious eating</h4></li>
-  <li><h4>Eat plenty of fruit</h4></li>
-</ul>
-<h2><a href="habits/meditation"> Meditation:</a></h2>
-<ul>
-  <li><h4>Meditate for 5 minutes straight, not distractions</h4></li>
-  <li><h4>Meditate for 10 minutes straight, not distractions</h4></li>
-  <li><h4>Meditate for 15 minutes straight, not distractions</h4></li>
-  <li><h4>Meditate for 20 minutes straight, not distractions</h4></li>
-  <li><h4>Meditate for 25 minutes straight, not distractions</h4></li>
-  <li><h4>Meditate for 30 minutes straight, not distractions</h4></li>
-  <li><h4>Meditate for 35 minutes straight, not distractions</h4></li>
-</ul>
-<h2><a href="habits/walking"> Practice Walking:</a></h2>
-<ul>
-  <li><h4>8K steps a day</h4></li>
-  <li><h4>10K steps a day</h4></li>
-  <li><h4>12K steps a day</h4></li>
-  <li><h4>15K steps a day</h4></li>
-  <li><h4>20K steps a day</h4></li>
-</ul>
+<a class="p-0 m-0 text-decoration-none" href="/habits/meditation">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🧘</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">MEDITATION</h5>
+    <p class="card-text text-muted">Meditation is a transformative practice that nurtures a state of deep relaxation, heightened self-awareness, and an overall sense of well-being.</p>
+    <a href="/habits/meditation" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/walking">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🏃</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Walking</h5>
+    <p class="card-text text-muted">Walking is an invigorating exercise that improves physical health and uplifts the spirit.
+</p>
+    <a href="/habits/walking" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/coldwater">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🥶</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Cold Water</h5>
+    <p class="card-text text-muted">Cold water revitalizes the body, sharpens the mind, and promotes overall well-being.
+</p>
+    <a href="/habits/coldwater" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+ 
+ <a class="p-0 m-0 text-decoration-none" href="/habits/dopaminefasting">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🍕🚫</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Dopamine Fasting</h5>
+    <p class="card-text text-muted">Dopamine fasting resets the mind and restores appreciation for simplicity.
+</p>
+    <a href="/habits/dopaminefasting" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/earthing">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🍃</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Earthing</h5>
+    <p class="card-text text-muted">Earthing, or grounding, by walking barefoot on natural surfaces, harnesses the Earth's energy to promote health and well-being.
+</p>
+    <a href="/habits/earthing" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/exercise">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🏋️</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Exercise</h5>
+    <p class="card-text text-muted">Exercise enhances fitness, mental clarity, and well-being.
+</p>
+    <a href="/habits/exercise" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/lifestyle">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🤸</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Lifestyle</h5>
+    <p class="card-text text-muted">Lifestyle habits are the daily behaviors and routines that individuals adopt as part of their lifestyle.
+</p>
+    <a href="/habits/lifestyle" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/mindfulness">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">💡</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Mindfulness</h5>
+    <p class="card-text text-muted">Mindfulness is a transformative state of awareness
+</p>
+    <a href="/habits/mindfulness" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/productivity">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">💯</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Productivity</h5>
+    <p class="card-text text-muted">Productivity refers to the measure of efficiency and effectiveness in completing tasks and achieving goals. 
+</p>
+    <a href="/habits/productivity" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/relationships">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">💕</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Relationship</h5>
+    <p class="card-text text-muted">A relationship refers to the connection or bond between two or more individuals.
+</p>
+    <a href="/habits/relationships" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/intermittentFasting">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🕙</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Intermittent Fasting</h5>
+    <p class="card-text text-muted">Intermittent fasting is a dietary pattern that involves alternating periods of fasting and eating.
+</p>
+    <a href="/habits/intermittentFasting" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+<a class="p-0 m-0 text-decoration-none" href="/habits/healthDiet">
+<div class="card col-4 p-3 text-center list-card-habits" style="width: 18rem;">
+  <p class="m-0 habits-icon">🥗</p>
+  <div class="card-body">
+    <h5 class="card-title text-blue">Healthy Diet</h5>
+    <p class="card-text text-muted">A healthy diet refers to a way of eating that provides the essential nutrients, vitamins, and minerals.
+</p>
+    <a href="/habits/healthDiet" class="btn btn-primary my-3">Read More</a>
+  </div>
+</div>
+</a>
+
+
+
+
+ </div>
+</div>
+  <footer class="container-fluid bg-gray">
+     <div class="container">
+    <div class="row">
+       <div class="col-12 col-md">
+           <h1 class="text-blue d-flex align-items-center gap-3"><img class="favicon-md bg-blue" src="/images/habitsu.png" alt="">Habitsu</h1>
+           <p class="text-graylight opacity-75">Copyright © 2023</p>
+           <p class="fs-5">Made with <img src="images/logo11.svg" alt=""> by <a class="text-decoration-none" href="">Mauricio</a> & <a class="text-decoration-none" href="">Rampriya</a> & <a class="text-decoration-none" href="">Krisztian</a></p>
+       </div>
+       <div class="col d-flex justify-content-start d-md-block">
+          <div class="row">
+            <div class="col d-flex gap-3 justify-content-end">
+               <ul class="list-style-none d-flex flex-column gap-2">
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/">Home</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/about">About</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/contact">Contact</a></li>
+               </ul>
+               <ul class="list-style-none d-flex flex-column gap-2">
+                   <li><a class="text-decoration-none text-dark text-default fs-4" href="/privacy-policy">Privacy Policy</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/terms-of-use">Terms of Service</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/contact">Email Us</a></li>
+                        <li class="d-flex gap-3 mt-3">
+                  <img src="/images/twitter.svg" alt="">
+                  <img src="/images/linkedin.svg" alt="">
+                </li>
+               </ul>
+            </div>
+          </div>
+       </div>
+    </div>
+     </div>
+   </footer>
