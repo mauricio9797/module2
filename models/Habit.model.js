@@ -25,11 +25,6 @@ const HabitSchema = new Schema(
       lowercase: true,
       trim: true,
     },
-
-    Time: {
-      type: String,
-      required: true,
-    },
     Count:{
       type: String,
 

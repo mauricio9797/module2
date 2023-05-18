@@ -26,7 +26,7 @@
 <a href="/habitPractice"> Add habit from our Recommendations </a>
   
 
-<select onChange="window.location.href=this.value">
+<select name="select" onChange="window.location.href=this.value">
    {{#each userHabits.habit}}
     <option  value="/myHabits/{{_id}}">{{this.Habit}}</option>
     {{/each}}

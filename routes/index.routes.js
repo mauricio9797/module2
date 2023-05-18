@@ -15,8 +15,7 @@ const multer = require("multer");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  // const currentTime = getCurrentTime();
-  // console.log(currentTime)
+ 
   if (req.session.user) {
     res.render("index", { user: req.session.user });
   } else {
