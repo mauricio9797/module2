@@ -32,22 +32,21 @@ module.exports = (app) => {
 
 
 
-  app.use(session({
+ app.use(
+  session({
     secret: process.env.SESS_SECRET,
-    store: MongoStore.create({ mongoUrl: MONGO_URI }),
-   resave: true,
-    saveUninitialized: false,
-    
+    store: MongoStore.create({ mongoUrl: MONGO_URI}),
+    resave: true,
+    saveUninitialized: true,
+
     cookie: {
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      secure: false,
       httpOnly: true,
-      maxAge: 60000000,
-
+      maxAge: 1800000,
     },
-
-})
-);
+  })
+ );
 
   // Normalizes the path to the views folder
   app.set("views", path.join(__dirname, "..", "views"));
