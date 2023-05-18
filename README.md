@@ -1,5 +1,5 @@
 #Habitsu
-![Logo](./images/habitsu.png)
+![Logo](./public/images/habitsu.png)
 
                     Table of contents
 
