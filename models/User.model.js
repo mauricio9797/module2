@@ -10,7 +10,7 @@ const userSchema = new Schema(
     habit: [{ ref: "Habit", type: Schema.Types.ObjectId }],
     email: {
       type: String,
-      
+      required: true,
 
       lowercase: true,
       trim: true,
@@ -21,7 +21,7 @@ const userSchema = new Schema(
    
     password: {
       type: String,
-      
+      required: true,
     },
   },
   {

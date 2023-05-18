@@ -74,7 +74,7 @@ router.post('/login',async(req,res,next) =>{
   
     if (!user){
       return res.render("auth/login", {error: "user non-exist"})
-    }next()
+    };
     
     const passwordMatch = await bcryptjs.compare(req.body.password, user.password);
     if (!passwordMatch){
@@ -88,7 +88,7 @@ router.post('/login',async(req,res,next) =>{
     console.log(req.body);
     res.redirect("/profile");
   } catch (err) {
-    
+    next(err);
   }
 });
 
@@ -122,7 +122,7 @@ router.post("/habitCreate", isLoggedIn, async (req, res, next) => {
     res.status(404).render("emptyfield");
   }
 });
-/*router.post("/habits/earthing", isLoggedIn, async (req, res, next) => {
+router.post("/habits/earthing", isLoggedIn, async (req, res, next) => {
   console.log("hola desde auth.routes======>",req.body)
   try {
     const habit = new Habit({
@@ -146,7 +146,7 @@ router.post("/habitCreate", isLoggedIn, async (req, res, next) => {
   } catch (err) {
     res.status(404).render("emptyfield");
   }
-});*/
+});
 
 
 router.get("/habitEdit/:habitId", isLoggedIn, async (req, res, next) => {
@@ -210,7 +210,27 @@ router.post("/accountDelete/:userId", isLoggedIn,  async (req, res) => {
     console.error("There was an error", err);
   }
 });
+router.get("/accountEdit/:userId", isLoggedIn, async (req, res, next) => {
+  try {
+    const { userId } = req.params.userId;
+    const user = await User.findById(userId);
+    res.render("settings", { user});
+    
+  } catch (err) {
+    console.error("There was an error", err);
+  }
+});
+router.post("/accountEdit/:userId", isLoggedIn, async (req, res) => {
+  const userId = req.params.userId;
+  const updateData = {
+    username: req.body.username,
+};
 
+  const user = await User.findByIdAndUpdate(userId, updateData, {new: true})
+    console.log("hello this is the updatedUser data", user)
+  res.redirect("/profile/");
+  
+})
 
 
 
@@ -297,17 +317,5 @@ router.post("/habitCount/:habitId", isLoggedIn, async (req, res) => {
   }
 });
 
-
-
-/*router.post("/userSettings/:userId", isLoggedIn, async (req, res, next) => {
-  try{
-  const {userId} = req.params
-  const userDeleted = await User.findByIdAndDelete({userId})
-  res.redirect("/");
-  }catch(err){
-    console.log(err)
-  }
-  
-});*/
 module.exports = router;
 
