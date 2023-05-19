@@ -31,13 +31,15 @@
     </nav>
    </div>
 </div>
-<div>
-   <select name="select" onchange="window.location.href=this.value">
+ <div>
+     <label ><h1 style="color: darkblue; font:bolder">Search your habbit</h1></label>
+   <select style="border-width: 5px;  border-color:darkblue" name="select" onchange="window.location.href=this.value">
     {{#each userHabits.habit}}
       <option value="/myHabits/{{_id}}">{{this.Habit}}</option>
     {{/each}}
   </select>
-
+</div>
+    
 </div>
             
      
@@ -65,7 +67,10 @@
 </div>
 
 {{#if userHabits.habit}}
+<div class="all-div"></div>
   {{#each userHabits.habit}}
+ 
+  
     <h1> <a href="/myHabits/{{_id}}">{{this.Habit}}</a></h1>
     <h1>My goal: {{this.Goal}}</h1>
 
@@ -87,8 +92,10 @@
     >
       <button>Progress Check</button>
     </form>
+    
+  
   {{/each}}
- 
+  </div>
  <div>
 
  </div>
