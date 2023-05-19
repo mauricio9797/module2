@@ -105,7 +105,7 @@ router.post("/habitCreate", isLoggedIn, async (req, res, next) => {
       Tasks: req.body.Tasks,
       Tasks1: req.body.Tasks1,
       Tasks2: req.body.Tasks2,
-     
+
       Count: req.body.Count,
       Duration: req.body.Duration,
       Goal: req.body.Goal,
@@ -129,7 +129,7 @@ router.post("/habits/earthing", isLoggedIn, async (req, res, next) => {
       Tasks: req.body.Tasks,
       Tasks1: req.body.Tasks1,
       Tasks2: req.body.Tasks2,
-     
+
       Count: req.body.Count,
       Duration: req.body.Duration,
       Goal: req.body.Goal,
@@ -164,7 +164,7 @@ router.post("/habitEdit/:habitId", isLoggedIn, async (req, res) => {
       Tasks: req.body.tasks,
       Tasks1: req.body.tasks1,
       Tasks2: req.body.tasks2,
-      
+
       Count: req.body.count,
       Duration: req.body.duration,
       Goal: req.body.goal,
@@ -209,7 +209,6 @@ router.post("/accountDelete/:userId", isLoggedIn, async (req, res) => {
     console.error("There was an error", err);
   }
 });
-
 
 router.get("/myHabits", isLoggedIn, async (req, res) => {
   try {

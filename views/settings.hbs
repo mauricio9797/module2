@@ -47,7 +47,7 @@
 <div class="offcanvas-body">
   <h1>hi {{user.username}}</h1>
     <h2>Edit User</h2>
-<form class="d-flex flex-column" action="/accountEdit/{{user._id}}" method="post">
+<form class="d-flex flex-column" action="/accountEdit/{{user._id}}" method="post" enctype="multipart/form-data">
 
 
 
@@ -60,8 +60,8 @@
    <label for="password">Password</label>
   <input  type="password" id="password" name="password" value=**** required /><br /><br />
 
-
-
+  <label for="userImage">Profile photo</label>
+  <input class="form-control-file" type="file" id="userImage "name="userImage" accept="image/png, image/jpg" required /><br /><br />
 
 
   <button type="submit">Edit</button>

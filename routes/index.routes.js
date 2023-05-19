@@ -15,7 +15,6 @@ const multer = require("multer");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
- 
   if (req.session.user) {
     res.render("index", { user: req.session.user });
   } else {
@@ -26,32 +25,28 @@ router.get("/", (req, res, next) => {
 router.use("/auth", authRoutes);
 
 router.get("/messages", isLoggedIn, async (req, res, next) => {
-  try{
-    const user = await User.findById(req.session.user.userId)
+  try {
+    const user = await User.findById(req.session.user.userId);
     res.send("Your recent messages" + user.username);
-  }catch(err){
-    console.log(err)
-    next(err)
+  } catch (err) {
+    console.log(err);
+    next(err);
   }
- 
 });
 
 router.get("/profile", isLoggedIn, async (req, res, next) => {
-  try{
+  try {
     const user = await User.findById(req.session.user.userId).populate("habit");
-  
-  
+
     res.render("profile", {
       userName: user.username,
       userImage: user.userImage,
       habits: user.habit,
     });
-  }catch(err){
-    console.log(err)
-    next(err)
+  } catch (err) {
+    console.log(err);
+    next(err);
   }
-  
-  
 });
 router.get("/profile/settings", isLoggedIn, async (req, res) => {
   try {
@@ -59,8 +54,8 @@ router.get("/profile/settings", isLoggedIn, async (req, res) => {
       "this is the route that renders profile/settings. Edit it in order to update user!"
     );
     const user = await User.findById(req.session.user.userId);
-    console.log(user)
-    res.render("settings",  {user} );
+    console.log(user);
+    res.render("settings", { user });
   } catch (err) {
     console.error("There was an error", err);
   }
@@ -75,22 +70,17 @@ router.post(
       const { username, email } = req.body;
       const salt = await bcryptjs.genSalt(12);
       const hash = await bcryptjs.hash(req.body.password, salt);
-      const { password } = req.body;
 
-      const passwordUpdate = await User.findByIdAndUpdate(userId, {username, email, password: hash}, {
-        new: true,
-      });
-
-      /*const { userImage } = req.file.filename;
-      const userImageUpdated = await User.findByIdAndUpdate(
+      await User.findByIdAndUpdate(
         userId,
-        req.file.filename,
-        { new: true }
-      );*/
-console.log("a ver que paza aqui ---->")
-      req.session.user = {
-        userId: req.session.user.userId
+        { username, email, password: hash, userImage: req.file.path },
+        {
+          new: true,
+        }
+      );
 
+      req.session.user = {
+        userId: req.session.user.userId,
       };
 
       res.redirect("/profile");
