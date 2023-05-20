@@ -49,40 +49,45 @@
     </nav>
    </div>
 </div>
-<div class="content-container">
-<h2>Add Habit</h2>
-<form action="/habitCreate" method="post">
+<div class="container d-flex flex-column align-items-center py-5">
+    <h2>Add habit</h2>
+    <div class="input-container py-5">
+<form class="d-flex flex-column w-100" action="/habitCreate" method="post">
 
-  <label for="Habit">Habit:</label>
-  <input type="text" id="Habit" name="Habit" /><br /><br />
-
-  <label for="Tasks">Tasks:</label>
-  <textarea type="text" id="Tasks" name="Tasks"></textarea><br /><br />
-
-  <label for="Tasks1">Tasks:</label>
-  <textarea type="text" id="Tasks1" name="Tasks1"></textarea><br /><br />
-
-    <label for="Tasks2">Tasks:</label>
-  <textarea type="text" id="Tasks2" name="Tasks2"></textarea><br /><br />
-
-
- 
-   <label for="Count">Habit completion streak:</label>
-  <select type="text" id="Count" name="Count" value="0" readonly="0" /><br /><br />
-  
-
-  </select>
-
-  <label for="Duration">Duration:</label>
-  <input type="text" id="Duration" name="Duration" /><br /><br />
-
-  <label for="Goal">Goal:</label>
-  <textarea type="text" id="Goal" name="Goal"></textarea><br /><br />
-
-  <input type="submit" value="Add Habit!" />
-</form>
-</body>
+   <div>
+  <label class="fs-4 text-default mb-2" for="Habit">1. Habit</label>
+  <input class="form-control"  type="text" id="Habit" name="Habit" /><br /><br />
 </div>
+  <label class="fs-4 text-default mb-2" for="Tasks">2. Add tasks</label>
+<input class="form-control" type="text" name="Tasks" id="Tasks" />
+   <br /><br />
+
+   <label class="fs-4 text-default mb-2" for="Tasks1">3. Add tasks</label>
+  <input class="form-control" type="text" name="Tasks1" id="Tasks1"  />
+ <br /><br />
+
+   <label class="fs-4 text-default mb-2" for="Tasks2">4. Add tasks</label>
+  <input class="form-control" type="text" name="Tasks2" id="Tasks2"  />
+ <br /><br />
+  <label class="fs-4 text-default mb-2" for="Duration">5. Duration:</label>
+  <input class="form-control"
+    type="text"
+    name="Duration"
+    id="Duration"
+   
+  />
+   <br /><br />
+  <label class="fs-4 text-default mb-2" for="Goal">6. Goal:</label>
+  <input class="form-control" type="text" name="Goal" id="Goal" />
+  
+   <br /><br />
+   <div class="text-center">
+   <button class="btn btn-primary fs-5" type="submit">Create</button>
+   </div>
+</form>
+</div>
+   </div>
+
 
   <footer class="container-fluid bg-gray">
      <div class="container">

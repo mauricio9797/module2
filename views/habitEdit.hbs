@@ -17,8 +17,9 @@
   </a>
 
   <ul class="dropdown-menu rounded-2 py-3 px-2" aria-labelledby="dropdownMenuLink">
-    <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{userName}}</p></li>
-    <li class="py-1"><a class="dropdown-item" href="/habitPractice">Recommendations</a></li>
+    <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{username}}</p></li>
+     <li class="py-1"><i class="fa-solid fa-user fs-5"></i><a class="dropdown-item" href="/profile">Profile</a></li>
+     <li class="py-1"><a class="dropdown-item" href="/habitPractice">Recommend</a></li>
     <li class="py-1"><a class="dropdown-item" href="/myHabits">My Habits</a></li>
     <li class="py-1"><a class="dropdown-item" href="/profile/settings">Account Settings</a></li>
     <li class="py-1"><form class="px-3" method="POST" action="/auth/logout">
@@ -39,7 +40,7 @@
 <form class="d-flex flex-column w-100" action="/habitEdit/{{habit._id}}" method="post">
 
    <div>
-  <label for="habit">1. Name this habit</label>
+  <label class="fs-4 text-default mb-2" for="habit">1. Name this habit</label>
   <input class="form-control"  type="text" id="habit" name="habit" value="{{habit.Habit}}" required /><br /><br />
 </div>
   <label class="fs-4 text-default mb-2" for="Tasks">2. Add tasks</label>
@@ -53,7 +54,7 @@
    <label class="fs-4 text-default mb-2" for="Tasks2">4. Add tasks</label>
   <input class="form-control" type="text" name="tasks2" id="tasks2" value="{{habit.Tasks2}}" required />
  <br /><br />
-  <label for="duration">5. Duration:</label>
+  <label class="fs-4 text-default mb-2" for="duration">5. Duration:</label>
   <input class="form-control"
     type="text"
     name="duration"
@@ -62,7 +63,7 @@
     required
   />
    <br /><br />
-  <label for="goal">6. Goal:</label>
+  <label class="fs-4 text-default mb-2" for="goal">6. Goal:</label>
   <input class="form-control" type="text" name="goal" id="goal" value="{{habit.Goal}}" required />
   
    <br /><br />
