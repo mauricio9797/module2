@@ -11,6 +11,10 @@
   font-family: 'Boston';
 }
 
+.input-container{
+  max-width: 700px;
+  min-width: 500px;
+}
 
 .color-icon{
   background-color: blue;

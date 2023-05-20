@@ -33,26 +33,28 @@
     </nav>
    </div>
 </div>
-  <div>
+  <div class="container d-flex flex-column align-items-center py-5">
     <h2>Edit Habit</h2>
-<form class="d-flex flex-column" action="/habitEdit/{{habit._id}}" method="post">
+    <div class="input-container py-5">
+<form class="d-flex flex-column w-100" action="/habitEdit/{{habit._id}}" method="post">
 
+   <div>
   <label for="habit">1. Name this habit</label>
-  <input  type="text" id="habit" name="habit" value="{{habit.Habit}}" required /><br /><br />
-
+  <input class="form-control"  type="text" id="habit" name="habit" value="{{habit.Habit}}" required /><br /><br />
+</div>
   <label class="fs-4 text-default mb-2" for="Tasks">2. Add tasks</label>
-<input type="text" name="tasks" id="tasks" value="{{habit.Tasks}}" required />
+<input class="form-control" type="text" name="tasks" id="tasks" value="{{habit.Tasks}}" required />
    <br /><br />
 
    <label class="fs-4 text-default mb-2" for="Tasks1">3. Add tasks</label>
-  <input type="text" name="tasks1" id="tasks1" value="{{habit.Tasks1}}" required />
+  <input class="form-control" type="text" name="tasks1" id="tasks1" value="{{habit.Tasks1}}" required />
  <br /><br />
 
    <label class="fs-4 text-default mb-2" for="Tasks2">4. Add tasks</label>
-  <input type="text" name="tasks2" id="tasks2" value="{{habit.Tasks2}}" required />
+  <input class="form-control" type="text" name="tasks2" id="tasks2" value="{{habit.Tasks2}}" required />
  <br /><br />
   <label for="duration">5. Duration:</label>
-  <input
+  <input class="form-control"
     type="text"
     name="duration"
     id="duration"
@@ -61,11 +63,14 @@
   />
    <br /><br />
   <label for="goal">6. Goal:</label>
-  <input type="text" name="goal" id="goal" value="{{habit.Goal}}" required />
+  <input class="form-control" type="text" name="goal" id="goal" value="{{habit.Goal}}" required />
   
    <br /><br />
-   <button type="submit">Update</button>
+   <div class="text-center">
+   <button class="btn btn-primary fs-5" type="submit">Update</button>
+   </div>
 </form>
+</div>
    </div>
 
     <footer class="container-fluid bg-gray">
