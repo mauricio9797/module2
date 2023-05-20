@@ -1,26 +1,159 @@
- <br>
- <br>
- {{#ifCond habit.Count habit.Duration}}
-  <h1>Congrats on achieving your goal! You've completed {{habit.Duration}} days of {{habit.Tasks}},  {{habit.Tasks1}} and {{habit.Tasks2}}. Your newly adopted habit {{habit.Habit}} is more than integrated in your every day live! 🎉🎉🎉</h1>
-{{else}}
-   <h1>Keep working on developing your newly-adopted Habit! You Got this!</h1>
-{{/ifCond}}
-<br>
-<br>
-<br>
+ <head><style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
 
-<h1>Habit Details</h1>
-  </form>
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  .button:hover {
+    background-color: #2980b9;
+  }
+
+    .motivation {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    text-align: center;
+  }
+
+  .motivation h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .motivation p {
+    font-size: 18px;
+    color: rgb(143, 143, 243);
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+
+<body>
+
+  <h1>{{habitEditDetails.Habit}}</h1>
+<h1>{{data}}</h1>
+<div class="container-fluid bg-blue">
+   <div class="container">
+     <nav class="navbar navbar-expand-md p-3">
+      <a class="navbar-brand fw-bold text-white fs-3 d-flex align-items-center gap-3" href="/"><img class="favicon-sm bg-white" src="/images/habitsu.png" alt=""> Habitsu</a>
+       <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+         <li class="nav-item">
+              <div class="dropdown">
+  <a class=" dropdown-toggle fs-2 d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <img class="favicon-sm" src="/images/avatar.svg" alt="">
+  </a>
+
+  <ul class="dropdown-menu rounded-2 py-3 px-2" aria-labelledby="dropdownMenuLink">
+    <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{userName}}</p></li>
+    <li class="py-1"><a class="dropdown-item" href="/habitPractice">Recommendations</a></li>
+    <li class="py-1"><a class="dropdown-item" href="/myHabits">My Habits</a></li>
+    <li class="py-1"><a class="dropdown-item" href="/profile/settings">Account Settings</a></li>
+     <li class="py-1"><a class="dropdown-item" href="/profile">Profile</a></li>
+    <li class="py-1"><form class="px-3" method="POST" action="/auth/logout">
+  <button class="p-0 border-0 bg-transparent" type="submit">Sign Out</button>
+</form></li>
+  </ul>
+</div>
+         </li>
+        </ul>
+       </div>
+    </div>
+    </nav>
+   </div>
+</div>
+
+
+  <div class="motivation">
+  {{#ifCond habit.Count habit.Duration}}
+    <h1>Congrats on achieving your goal!<br><br> You've completed {{habit.Duration}} days of {{habit.Tasks}}, {{habit.Tasks1}}, and {{habit.Tasks2}}.<br><br> Your newly adopted habit {{habit.Habit}} is more than integrated into your everyday life! 🎉🎉🎉</h1>
+  {{else}}
+    <h1>Keep working on developing your newly-adopted habit! You've got this!</h1>
+  {{/ifCond}}
+  </div>
+
+   <div class="container">
+
+  <h1>Habit Details</h1>
   <h2>Habit: {{habit.Habit}}</h2>
   <p>Tasks: {{habit.Tasks}}</p>
-   <p>Tasks: {{habit.Tasks1}}</p>
-   <p>Tasks: {{habit.Tasks2}}</p>
-  
+  <p>Tasks: {{habit.Tasks1}}</p>
+  <p>Tasks: {{habit.Tasks2}}</p>
   <p>Count: {{habit.Count}}</p>
   <p>Duration: {{habit.Duration}}</p>
   <p>Goal: {{habit.Goal}}</p>
 
-<a href="/myHabits">BACK</a>
-<a href="/habitCreate">Add new habit</a>
-<a href="/">Add habit from our Recommendations</a>
+  <a class="button" href="/myHabits">BACK</a>
+  <a class="button" href="/habitCreate">Add new habit</a>
+  <a class="button" href="/">Add habit from our Recommendations</a>
+</div>
 
+<footer class="container-fluid bg-gray">
+     <div class="container">
+    <div class="row">
+       <div class="col-12 col-md">
+           <h1 class="text-blue d-flex align-items-center gap-3"><img class="favicon-md bg-blue" src="/images/habitsu.png" alt="">Habitsu</h1>
+           <p class="text-graylight opacity-75">Copyright © 2023</p>
+           <p class="fs-5">Made with ❤️ by <a class="text-decoration-none" href="">Mauricio</a> & <a class="text-decoration-none" href="">Rampriya</a> & <a class="text-decoration-none" href="">Krisztian</a></p>
+       </div>
+       <div class="col d-flex justify-content-start d-md-block">
+          <div class="row">
+            <div class="col d-flex gap-3 justify-content-end">
+               <ul class="list-style-none d-flex flex-column gap-2">
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/">Home</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/about">About</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/contact">Contact</a></li>
+               </ul>
+               <ul class="list-style-none d-flex flex-column gap-2">
+                   <li><a class="text-decoration-none text-dark text-default fs-4" href="/privacy-policy">Privacy Policy</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/terms-of-use">Terms of Service</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/contact">Email Us</a></li>
+                        <li class="d-flex gap-3 mt-3">
+                  <img src="/images/twitter.svg" alt="">
+                  <img src="/images/linkedin.svg" alt="">
+                </li>
+               </ul>
+            </div>
+          </div>
+       </div>
+    </div>
+     </div>
+   </footer>
+</body>

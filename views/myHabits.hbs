@@ -16,7 +16,7 @@
   <ul class="dropdown-menu rounded-2 py-3 px-2" aria-labelledby="dropdownMenuLink">
     <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{userName}}</p></li>
     <li class="py-1"><a class="dropdown-item" href="/habitPractice">Recommendations</a></li>
-    <li class="py-1"><a class="dropdown-item" href="/profile">Profile</a></li>
+    <li class="py-1"><i class="fa-solid fa-user fs-5"></i><a class="dropdown-item" href="/profile">Profile</a></li>
     <li class="py-1"><a class="dropdown-item" href="/profile/settings">Account Settings</a></li>
     <li class="py-1"><a class="dropdown-item" href="/habitCreate">Add habit</a></li>
     <li class="py-1"><form class="px-3" method="POST" action="/auth/logout">
@@ -72,7 +72,7 @@
  
   
     <h1> <a href="/myHabits/{{_id}}">{{this.Habit}}</a></h1>
-    <h1>My goal: {{this.Goal}}</h1>
+    <h3>My goal: {{this.Goal}}</h3>
 
     <form action="/habitEdit/{{this._id}}" method="get">
       <button>Edit</button>

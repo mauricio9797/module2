@@ -1,6 +1,39 @@
+<head>
+  
+</head>
+<body>
+  <h1>{{habitEditDetails.Habit}}</h1>
+<h1>{{data}}</h1>
+<div class="container-fluid bg-blue">
+   <div class="container">
+     <nav class="navbar navbar-expand-md p-3">
+      <a class="navbar-brand fw-bold text-white fs-3 d-flex align-items-center gap-3" href="/"><img class="favicon-sm bg-white" src="/images/habitsu.png" alt=""> Habitsu</a>
+       <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+         <li class="nav-item">
+              <div class="dropdown">
+  <a class=" dropdown-toggle fs-2 d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+    <img class="favicon-sm" src="/images/avatar.svg" alt="">
+  </a>
 
-
-<div>
+  <ul class="dropdown-menu rounded-2 py-3 px-2" aria-labelledby="dropdownMenuLink">
+    <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{userName}}</p></li>
+    <li class="py-1"><a class="dropdown-item" href="/habitPractice">Recommendations</a></li>
+    <li class="py-1"><a class="dropdown-item" href="/myHabits">My Habits</a></li>
+    <li class="py-1"><a class="dropdown-item" href="/profile/settings">Account Settings</a></li>
+    <li class="py-1"><form class="px-3" method="POST" action="/auth/logout">
+  <button class="p-0 border-0 bg-transparent" type="submit">Sign Out</button>
+</form></li>
+  </ul>
+</div>
+         </li>
+        </ul>
+       </div>
+    </div>
+    </nav>
+   </div>
+</div>
+  <div>
     <h2>Edit Habit</h2>
 <form class="d-flex flex-column" action="/habitEdit/{{habit._id}}" method="post">
 
@@ -18,9 +51,53 @@
    <label class="fs-4 text-default mb-2" for="Tasks2">4. Add tasks</label>
   <input type="text" name="tasks2" id="tasks2" value="{{habit.Tasks2}}" required />
  <br /><br />
- 
-  <label for="goal">7. Goal:</label>
+  <label for="duration">5. Duration:</label>
+  <input
+    type="text"
+    name="duration"
+    id="duration"
+    value="{{habit.Duration}}"
+    required
+  />
+   <br /><br />
+  <label for="goal">6. Goal:</label>
   <input type="text" name="goal" id="goal" value="{{habit.Goal}}" required />
-  <button type="submit">Update</button>
+  
+   <br /><br />
+   <button type="submit">Update</button>
 </form>
    </div>
+
+    <footer class="container-fluid bg-gray">
+     <div class="container">
+    <div class="row">
+       <div class="col-12 col-md">
+           <h1 class="text-blue d-flex align-items-center gap-3"><img class="favicon-md bg-blue" src="/images/habitsu.png" alt="">Habitsu</h1>
+           <p class="text-graylight opacity-75">Copyright © 2023</p>
+           <p class="fs-5">Made with ❤️ by <a class="text-decoration-none" href="">Mauricio</a> & <a class="text-decoration-none" href="">Rampriya</a> & <a class="text-decoration-none" href="">Krisztian</a></p>
+       </div>
+       <div class="col d-flex justify-content-start d-md-block">
+          <div class="row">
+            <div class="col d-flex gap-3 justify-content-end">
+               <ul class="list-style-none d-flex flex-column gap-2">
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/">Home</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/about">About</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/contact">Contact</a></li>
+               </ul>
+               <ul class="list-style-none d-flex flex-column gap-2">
+                   <li><a class="text-decoration-none text-dark text-default fs-4" href="/privacy-policy">Privacy Policy</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/terms-of-use">Terms of Service</a></li>
+                <li><a class="text-decoration-none text-dark text-default fs-4" href="/contact">Email Us</a></li>
+                        <li class="d-flex gap-3 mt-3">
+                  <img src="/images/twitter.svg" alt="">
+                  <img src="/images/linkedin.svg" alt="">
+                </li>
+               </ul>
+            </div>
+          </div>
+       </div>
+    </div>
+     </div>
+   </footer>
+   </body>
+

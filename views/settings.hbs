@@ -6,19 +6,19 @@
        <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
          <li class="nav-item">
-  
 <div class="btn-group">
 <a class=" dropdown-toggle fs-2 d-flex align-items-center" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
     <img class="favicon-sm" src="/images/avatar.svg" alt="">
   </a>
   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start">
-    <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{user.username}}</p></li>
-        <li class="py-2 border-top border-bottom border-muted border-2 d-flex align-items-center text-graylight"></i><a class="dropdown-item" href="/profile">Profile</a></li>
-                <li class="py-2 border-top border-bottom border-muted border-2 d-flex align-items-center text-graylight"></i><a class="dropdown-item" href="/myHabits">My habits</a></li>
-                                <li class="py-2 border-top border-bottom border-muted border-2 d-flex align-items-center text-graylight"></i><a class="dropdown-item" href="/habitPractice">Recommendations</a></li>
-
-
-
+    <li class="d-flex gap-1">  <img class="favicon-sm" src="/images/avatar.svg" alt=""><p>{{userName}}</p></li>
+    <li class="py-2 border-top border-bottom border-muted border-2 d-flex align-items-center text-graylight"><i class="fa-solid fa-user fs-5"></i><a class="dropdown-item" href="/profile">Profile</a></li>
+       <li class="py-2 border-top border-bottom border-muted border-2 d-flex align-items-center text-graylight"><a class="dropdown-item" href="/myHabits">MyHabits</a></li>
+          <li class="py-2 border-top border-bottom border-muted border-2 d-flex align-items-center text-graylight"><a class="dropdown-item" href="/habitPractice">Recommendations</a></li>
+             <li class="py-2 border-top border-bottom border-muted border-2 d-flex align-items-center text-graylight"><a class="dropdown-item" href="/habitCreate">Add Habits</a></li>
+    
+    
+    
     <li class="py-2 d-flex align-items-center gap-4"><form method="POST" action="/auth/logout">
  <i class="fa-solid fa-arrow-right-from-bracket fs-5 text-graylight"></i> <button class="p-0 border-0 bg-transparent" type="submit">Sign Out</button>
 </form></li>
@@ -37,45 +37,35 @@
     <div class="bg-white settings-form rounded-3 border border-muted ">
 
 <div class="offcanvas-body">
-  <div class="d-flex justify-content-center my-5 w-100 margin: 10px">
-         <div class="col-12  col-xl-4 bg-white rounded-3 text-center py-5 m-5 form-container form-container">
-  <h1 style="font:larger ">hi there, {{user.username}}</h1>
-    <h2 style="margin-top: 80px">Edit User</h2>
+  <h1>hi {{user.username}}</h1>
+    <h2 class="text-center text-default">Edit User</h2>
 <form class="d-flex flex-column" action="/accountEdit/{{user._id}}" method="post" enctype="multipart/form-data">
- <div class="w-100 d-flex flex-column gap-3 px-4"></div>
+
 
 
   <label for="username">Username</label>
-  <input  type="text" id="username" name="username" value="{{user.username}}" required /><br /><br />
+  <input class="form-control"  type="text" id="username" name="username" value="{{user.username}}" required /><br /><br />
 
    <label for="email">Username</label>
-  <input  type="email" id="email" name="email" value="{{user.email}}" required /><br /><br />
+  <input class="form-control"  type="email" id="email" name="email" value="{{user.email}}" required /><br /><br />
 
    <label for="password">Password</label>
-  <input  type="password" id="password" name="password" value=**** required /><br /><br />
-
-  <label for="userImage">Profile photo</label>
-  <input class="form-control-file" type="file" id="userImage" name="userImage" accept="image/png, image/jpg" required /><br /><br />
+  <input class="form-control"  type="password" id="password" name="password" value=**** required /><br /><br />
 
 
-            
-             
-            
+
+<label for="userImage">Profile photo</label>
+  <input class="form-control-file" type="file" id="userImage "name="userImage" accept="image/png, image/jpg" > 
 
 
 
 
-
-
-
-
-
-<button type="sub
-">Edit</button>
+   <div class="text-center">
+  <button class="btn btn-primary fs-5 px-4 py-2" type="submit">Edit</button>
+  </div>
 </form>
-
    </div>
- </div>
+
         
     <div>
         <div class="bg-white settings-form mt-4 rounded-3 border border-muted d-flex justify-content-between align-items-center">
@@ -106,18 +96,18 @@ Are you sure you want to do this?</p>
       </div>
       <div class="modal-body">
         <form class="d-flex flex-column gap-3" action="/accountDelete/{{user._id}}" method="post" >
-                   
+        
+            
        
       </div>
       <div class="modal-footer d-flex gap-3 border-0">
         <button type="button" class="btn btn-light px-5 py-3 rounded-5 text-blue bg-white border-muted border" data-bs-dismiss="modal">Cancel</button>
         <button type="submit" class="btn btn-danger bg-red px-4 py-3 rounded-5">Yes, Delete Account</button>
+         </form>
       </div>
     </div>
   </div>
-   </form>
 </div>
-
 
         </div>
     </div>
